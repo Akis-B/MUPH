@@ -149,13 +149,21 @@
       renderer.outputEncoding = THREE.sRGBEncoding;
       renderer.toneMapping = THREE.NoToneMapping;
 
-      const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+      const ambient = new THREE.AmbientLight(0xffffff, 0.55);
       scene.add(ambient);
 
-      const dirLight = new THREE.DirectionalLight(0xffffff, 0.95);
-      dirLight.position.set(3, 4, 5);
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.25);
+      dirLight.position.set(3, 4, 6);
+      dirLight.target.position.set(0, 0, 0);
       dirLight.castShadow = false;
       scene.add(dirLight);
+      scene.add(dirLight.target);
+
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.75);
+      fillLight.position.set(-3, 2, -4);
+      fillLight.target.position.set(0, 0, 0);
+      scene.add(fillLight);
+      scene.add(fillLight.target);
 
       const controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
@@ -225,4 +233,3 @@
   </script>
 </body>
 </html>
-
